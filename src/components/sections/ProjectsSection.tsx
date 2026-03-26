@@ -1,62 +1,56 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, GitFork } from "lucide-react";
+import { GitFork } from "lucide-react";
 
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { projects } from "@/lib/data";
 
 export function ProjectsSection() {
-  return (
-    <section id="projects" className="section-padding">
-      <div className="container-noble">
-        <SectionTitle
-          eyebrow="Selected Works"
-          title="Projects"
-          description="A curated set of dark, animated products demonstrating UI engineering, interactivity, and visual storytelling."
-        />
+  const project = projects[0];
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {projects.map((project, index) => (
-            <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ delay: index * 0.08, duration: 0.65 }}
-              className="card-noble flex h-full flex-col rounded-2xl p-5"
+  return (
+    <motion.section
+      id="projects"
+      className="section-padding"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+    >
+      <div className="container-noble">
+        <SectionTitle eyebrow="Build Log" title="Projects" description="One real project, built to learn deeply and improve fast." />
+
+        <article className="card-noble mx-auto max-w-3xl rounded-2xl p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h3 className="text-2xl text-white">{project.title}</h3>
+            <span className="rounded-full border border-violet-300/40 bg-violet-500/10 px-3 py-1 text-xs font-mono text-violet-100/90">
+              {project.status}
+            </span>
+          </div>
+
+          <p className="mt-4 leading-8 text-violet-100/84">{project.description}</p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span key={tag} className="rounded-full border border-violet-400/50 px-3 py-1 text-xs font-mono text-violet-200/90">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-6">
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-noble inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold"
             >
-              <h3 className="text-lg text-white">{project.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-7 text-violet-100/75">{project.description}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="skill-tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-5 flex items-center gap-3">
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-noble inline-flex items-center gap-2 px-4 py-2 text-xs"
-                >
-                  <GitFork size={14} /> GitHub
-                </a>
-                <a
-                  href={project.demoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-noble-solid inline-flex items-center gap-2 px-4 py-2 text-xs"
-                >
-                  <ExternalLink size={14} /> Demo
-                </a>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+              <GitFork size={16} /> GitHub Repository
+            </a>
+          </div>
+        </article>
       </div>
-    </section>
+    </motion.section>
   );
 }

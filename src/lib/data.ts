@@ -10,73 +10,63 @@ export const navLinks: NavLink[] = [
 
 export const socialLinks: SocialLink[] = [
   { name: "GitHub", href: "https://github.com/HxOpSec", ariaLabel: "Visit GitHub profile" },
-  { name: "LinkedIn", href: "https://linkedin.com", ariaLabel: "Visit LinkedIn profile" },
-  { name: "Telegram", href: "https://t.me/username", ariaLabel: "Visit Telegram profile" },
-  { name: "X", href: "https://x.com/username", ariaLabel: "Visit X profile" },
+  { name: "Telegram", href: "https://t.me/umedxo", ariaLabel: "Visit Telegram profile" },
+  { name: "Instagram", href: "https://instagram.com/umzhall", ariaLabel: "Visit Instagram profile" },
+];
+
+export const aboutParagraphs = [
+  "I'm a self-taught cybersecurity student, 3 months into serious study after 6 months of finding my path. No classroom, no mentor — just curiosity, Linux, and the will to figure things out.",
+  "I study through Cisco Networking Academy and IBM SkillsBuild. My goal is to become a SOC Analyst. My biggest strength isn't what I know yet — it's how fast I learn and how honest I am about where I stand.",
 ];
 
 export const aboutStats = [
-  { label: "Years Experience", value: "2+" },
-  { label: "Projects Built", value: "15+" },
-  { label: "UI Components", value: "80+" },
+  { label: "Active Learning", value: "3mo" },
+  { label: "Project Shipped", value: "1" },
+  { label: "Certifications (in progress)", value: "2" },
+  { label: "Drive to Grow", value: "∞" },
+];
+
+export const softSkills = [
+  "Self-Taught",
+  "Fast Learner",
+  "Linux Native",
+  "Honest",
+  "Curious",
+  "Goal-Oriented",
 ];
 
 export const skills: Skill[] = [
-  { name: "HTML5", level: 95, icon: "FileCode2" },
-  { name: "CSS3", level: 93, icon: "Palette" },
-  { name: "JavaScript", level: 90, icon: "Braces" },
-  { name: "TypeScript", level: 92, icon: "Code2" },
-  { name: "React", level: 94, icon: "Atom" },
-  { name: "Next.js", level: 92, icon: "Rocket" },
-  { name: "Tailwind CSS", level: 95, icon: "Paintbrush" },
-  { name: "Framer Motion", level: 88, icon: "Sparkles" },
-  { name: "GSAP", level: 86, icon: "WandSparkles" },
-  { name: "Three.js", level: 75, icon: "Orbit" },
-  { name: "Node.js", level: 82, icon: "Server" },
-  { name: "Git", level: 90, icon: "GitBranch" },
-  { name: "Figma", level: 88, icon: "PenTool" },
-  { name: "Docker", level: 78, icon: "Container" },
+  { name: "C++", level: 15, icon: "FileCode2", label: "just started", color: "#00599c" },
+  { name: "Git", level: 70, icon: "GitBranch", label: "daily use", color: "#f05032" },
+  { name: "GitHub", level: 75, icon: "Github", label: "daily use", color: "#e6edf3" },
+  { name: "Linux", level: 60, icon: "Terminal", label: "comfortable", color: "#fcc624" },
+  { name: "Parrot OS", level: 60, icon: "ShieldCheck", label: "main environment", color: "#00b4d8" },
+  { name: "TCP/IP", level: 45, icon: "Network", label: "learning", color: "#a855f7" },
+  { name: "Networking", level: 40, icon: "Router", label: "learning", color: "#7c3aed" },
+  { name: "Cisco NetAcad", icon: "BadgeCheck", label: "in progress", color: "#1ba0d7", badgeOnly: true },
+  { name: "IBM SkillsBuild", icon: "Award", label: "in progress", color: "#054ada", badgeOnly: true },
 ];
 
 export const projects: Project[] = [
   {
-    title: "Noblesse Portfolio",
+    title: "PhantomScan",
     description:
-      "A cinematic, galaxy-themed portfolio experience built with smooth section choreography and mystical visuals.",
-    tags: ["Next.js", "TypeScript", "Framer Motion"],
-    githubUrl: "https://github.com/HxOpSec/noblesse-portfolio",
-    demoUrl: "#home",
-  },
-  {
-    title: "Void Dashboard",
-    description:
-      "An analytics command center with dynamic visualizations, dark UI architecture, and real-time system insights.",
-    tags: ["React", "TypeScript", "Recharts"],
-    githubUrl: "https://github.com/HxOpSec/void-dashboard",
-    demoUrl: "https://example.com/void-dashboard",
-  },
-  {
-    title: "Ethereal UI Kit",
-    description:
-      "A reusable design system and component library delivering elegant motions and premium interaction patterns.",
-    tags: ["React", "Storybook", "Design System"],
-    githubUrl: "https://github.com/HxOpSec/ethereal-ui-kit",
-    demoUrl: "https://example.com/ethereal-ui-kit",
-  },
-  {
-    title: "Galaxy Music Player",
-    description:
-      "A WebAudio visualizer wrapped in a dark cosmic shell with immersive controls and ambient response effects.",
-    tags: ["WebAudio API", "Canvas", "JavaScript"],
-    githubUrl: "https://github.com/HxOpSec/galaxy-music-player",
-    demoUrl: "https://example.com/galaxy-music-player",
+      "My first real project — a multi-threaded port scanner built in C++ with AI-assisted development. Supports 50 parallel threads, OS detection via TTL analysis, service and firewall detection. Built to learn, not to impress.",
+    tags: ["C++", "Networking", "Multi-threading", "Linux", "AI-assisted"],
+    githubUrl: "https://github.com/HxOpSec/PhantomScan",
+    demoUrl: "https://github.com/HxOpSec/PhantomScan",
+    status: "First Project",
   },
 ];
 
 export const heroContent = {
   name: "HxOpSec",
-  role: "Frontend Developer",
-  description:
-    "I craft premium interactive web experiences with elegant animations, clean architecture, and cinematic visual storytelling.",
+  role: "Cybersecurity Student",
+  typewriterLines: [
+    "Learning to see what others miss.",
+    "Self-taught. Parrot OS. 3 months in.",
+    "C++ · Linux · Networks · Curiosity",
+    "Future SOC Analyst. Building the path.",
+  ],
   cvUrl: "/cv.pdf",
 };

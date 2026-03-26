@@ -8,29 +8,42 @@ import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [active, setActive] = useState("#home");
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      setIsScrolled(window.scrollY > 14);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 12);
+
+      const sections = navLinks
+        .map((link) => document.querySelector(link.href))
+        .filter((section): section is HTMLElement => section instanceof HTMLElement);
+
+      let current = "#home";
+      for (const section of sections) {
+        if (scrollY >= section.offsetTop - 130) {
+          current = `#${section.id}`;
+        }
+      }
+      setActive(current);
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-black/45 backdrop-blur-xl border-b border-violet-400/20" : "bg-transparent",
+        "fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+        isScrolled ? "bg-dark-glass border-noble" : "bg-transparent",
       )}
     >
       <nav className="container-noble flex h-16 items-center justify-between" aria-label="Primary navigation">
-        <a href="#home" className="font-heading text-lg tracking-[0.18em] text-noble-gradient glow-text">
-          NOBLESSE
+        <a href="#home" className="font-heading text-lg tracking-[0.16em] text-noble-gradient">
+          HxOpSec
         </a>
 
         <ul className="hidden items-center gap-6 md:flex">
@@ -38,7 +51,10 @@ export function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm tracking-wide text-violet-100/85 transition hover:text-violet-300"
+                className={cn(
+                  "text-sm tracking-wide transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                  active === link.href ? "text-violet-200" : "text-violet-100/80 hover:text-violet-300",
+                )}
               >
                 {link.label}
               </a>
@@ -59,23 +75,28 @@ export function Navbar() {
 
       <div
         className={cn(
-          "md:hidden overflow-hidden transition-[max-height,opacity] duration-300 border-t border-violet-500/20 bg-black/80 backdrop-blur-xl",
-          mobileOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0",
+          "md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+          mobileOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <ul className="container-noble flex flex-col gap-4 py-4">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="block py-1 text-violet-100/90"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="bg-dark-glass border-noble border-t">
+          <ul className="container-noble flex flex-col gap-3 py-4">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={cn(
+                    "block py-1 transition duration-300",
+                    active === link.href ? "text-violet-200" : "text-violet-100/90",
+                  )}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </header>
   );
