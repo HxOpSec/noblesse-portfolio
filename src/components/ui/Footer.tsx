@@ -1,5 +1,8 @@
+"use client";
+
 import { AtSign, GitFork, Send } from "lucide-react";
 
+import { useLanguage } from "@/context/LanguageContext";
 import { socialLinks } from "@/lib/data";
 
 const iconMap = {
@@ -9,11 +12,13 @@ const iconMap = {
 };
 
 export function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="pb-10 pt-8">
       <div className="mx-auto mb-6 h-px w-full max-w-6xl bg-gradient-to-r from-transparent via-violet-500/70 to-transparent" />
       <div className="container-noble flex flex-col items-center gap-4 text-sm text-violet-200/85">
-        <p>© 2026 HxOpSec · Future SOC Analyst · Built on Linux curiosity</p>
+        <p>© 2026 HxOpSec · {t("footer")}</p>
         <div className="flex items-center justify-center gap-4">
           {socialLinks.map((link) => {
             const Icon = iconMap[link.name as keyof typeof iconMap];
@@ -26,7 +31,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={link.ariaLabel}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-violet-400/30 bg-violet-500/10 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-violet-300/70 hover:bg-violet-500/25"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-violet-400/30 bg-violet-500/10 transition-all duration-500 ease-in-out hover:border-violet-300/70 hover:bg-violet-500/25"
               >
                 <Icon size={15} />
               </a>

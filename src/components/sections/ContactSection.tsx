@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { AtSign, GitFork, Send } from "lucide-react";
 
 import { SectionTitle } from "@/components/ui/SectionTitle";
+import { useLanguage } from "@/context/LanguageContext";
 import { socialLinks } from "@/lib/data";
 
 const iconMap = {
@@ -14,6 +15,7 @@ const iconMap = {
 };
 
 export function ContactSection() {
+  const { t } = useLanguage();
   const [notice, setNotice] = useState("");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -31,28 +33,31 @@ export function ContactSection() {
       transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
     >
       <div className="container-noble">
-        <SectionTitle eyebrow="Connect" title="Contact" description="Open to feedback, collaboration, and learning opportunities." />
+        <SectionTitle eyebrow="Connect" title={t("contact_title")} description={t("contact_subtitle")} />
 
         <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
           <form className="card-noble rounded-2xl p-6" onSubmit={handleSubmit} aria-label="Contact form">
             <div className="grid gap-4">
               <label htmlFor="name" className="text-sm text-violet-100/85">
-                Name
+                {t("contact_name")}
               </label>
               <input id="name" name="name" required className="input-noble rounded-xl px-4 py-3" />
 
               <label htmlFor="email" className="text-sm text-violet-100/85">
-                Email
+                {t("contact_email")}
               </label>
               <input id="email" name="email" type="email" required className="input-noble rounded-xl px-4 py-3" />
 
               <label htmlFor="message" className="text-sm text-violet-100/85">
-                Message
+                {t("contact_message")}
               </label>
               <textarea id="message" name="message" required rows={4} className="input-noble rounded-xl px-4 py-3" />
 
-              <button type="submit" className="btn-noble-solid mt-2 inline-flex w-fit items-center gap-2 px-6 py-3 text-sm font-semibold">
-                Send Message <Send size={16} />
+              <button
+                type="submit"
+                className="btn-noble-solid mt-2 inline-flex w-fit items-center gap-2 px-6 py-3 text-sm font-semibold transition-transform duration-500 ease-in-out hover:scale-[1.03] hover:animate-pulse"
+              >
+                {t("contact_send")} <Send size={16} />
               </button>
 
               {notice ? (
@@ -77,7 +82,7 @@ export function ContactSection() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={link.ariaLabel}
-                    className="flex items-center gap-2 rounded-lg border border-violet-500/20 px-3 py-2 text-violet-100/90 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-violet-300/40 hover:bg-violet-500/10"
+                    className="flex items-center gap-2 rounded-lg border border-violet-500/20 px-3 py-2 text-violet-100/90 transition-all duration-200 ease-in-out hover:translate-x-1 hover:border-violet-300/40 hover:bg-violet-500/10 hover:text-[#a855f7] hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.55)]"
                   >
                     <Icon size={15} />
                     {link.name}
