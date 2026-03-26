@@ -18,7 +18,7 @@ export function ContactSection() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setNotice("Message captured. Connect an API endpoint to deliver submissions.");
+    setNotice("Signal received. Direct message me on Telegram or GitHub while backend relay is offline.");
   };
 
   return (

@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Noblesse Portfolio",
-  description: "Premium dark mystical portfolio with galaxy-inspired interactivity.",
+  title: "HxOpSec | Cybersecurity Portfolio",
+  description: "Immersive cybersecurity portfolio for HxOpSec (Umed), aspiring SOC analyst.",
 };
 
 export default function RootLayout({

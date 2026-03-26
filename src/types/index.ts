@@ -5,6 +5,7 @@ export interface Project {
   githubUrl: string;
   demoUrl: string;
   status?: string;
+  quote: string;
 }
 
 export interface Skill {

@@ -16,7 +16,7 @@ export function AboutSection() {
       transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
     >
       <div className="container-noble">
-        <SectionTitle eyebrow="Identity" title="About" description="Honest progress. Clear direction. Strong discipline." />
+        <SectionTitle eyebrow="Identity" title="About" description="Learning to see what others miss, one system at a time." />
 
         <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
           <article className="card-noble rounded-2xl p-6 leading-8 text-violet-100/90">

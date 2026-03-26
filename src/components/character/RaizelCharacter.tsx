@@ -1,68 +1,68 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
 
 import { useMouseParallax } from "@/hooks/useMouseParallax";
 
-import { AuraEffect } from "./AuraEffect";
-import { CharacterLayers } from "./CharacterLayers";
-
 export function RaizelCharacter() {
-  const [hovered, setHovered] = useState(false);
   const mouse = useMouseParallax();
 
-  const translateX = mouse.x * 8;
-  const translateY = mouse.y * 5;
+  const translateX = mouse.x * 10;
+  const translateY = mouse.y * 8;
 
   return (
     <div
-      className="group relative mx-auto h-[380px] w-[280px] md:h-[500px] md:w-[360px] lg:h-[650px] lg:w-[480px]"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      aria-label="Noble character"
+      className="relative mx-auto h-[400px] w-[280px] md:h-[540px] md:w-[360px] lg:h-[680px] lg:w-[460px]"
+      style={{
+        transform: `translate3d(${translateX}px, ${translateY}px, 0)`,
+        transition: "transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
+      }}
+      data-cursor="character"
+      aria-label="Character portrait"
     >
-      <svg
-        viewBox="0 0 500 700"
-        className="h-full w-full"
+      <div
+        className="pointer-events-none absolute bottom-0 left-1/2 h-[200px] w-[600px] -translate-x-1/2"
         style={{
-          transform: `translate3d(${translateX}px, ${translateY}px, 0)`,
-          transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-          filter: hovered ? "drop-shadow(0 0 30px rgba(168,85,247,0.6))" : "none",
+          background:
+            "radial-gradient(ellipse, rgba(107,33,168,0.5) 0%, rgba(168,85,247,0.2) 40%, transparent 70%)",
+          filter: "blur(40px)",
+          animation: "auraBreathe 5s ease-in-out infinite",
         }}
-        role="img"
-        aria-label="Elegant long-haired character with mystical aura"
-      >
-        <defs>
-          <radialGradient id="deepAuraGradient" cx="50%" cy="44%" r="65%">
-            <stop offset="0%" stopColor="rgba(107,33,168,0.0)" />
-            <stop offset="55%" stopColor="rgba(168,85,247,0.5)" />
-            <stop offset="100%" stopColor="rgba(168,85,247,0)" />
-          </radialGradient>
-          <radialGradient id="mistGradient" cx="50%" cy="50%" r="60%">
-            <stop offset="0%" stopColor="rgba(124,58,237,0.15)" />
-            <stop offset="100%" stopColor="rgba(124,58,237,0)" />
-          </radialGradient>
-          <linearGradient id="cloakGradient" x1="250" y1="154" x2="250" y2="655">
-            <stop offset="0%" stopColor="#1a0a2e" />
-            <stop offset="100%" stopColor="#000000" />
-          </linearGradient>
-          <linearGradient id="torsoGradient" x1="250" y1="208" x2="250" y2="475">
-            <stop offset="0%" stopColor="#0d0618" />
-            <stop offset="100%" stopColor="#140826" />
-          </linearGradient>
+      />
 
-          <filter id="eyeGlowBase" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="1.8" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
+      <div
+        className="pointer-events-none absolute bottom-10 left-1/2 h-16 w-36 -translate-x-[58%] rounded-[999px]"
+        style={{
+          background: "rgba(124,58,237,0.2)",
+          filter: "blur(20px)",
+          animation: "mistDrift 7s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-8 left-1/2 h-14 w-32 -translate-x-[2%] rounded-[999px]"
+        style={{
+          background: "rgba(168,85,247,0.15)",
+          filter: "blur(20px)",
+          animation: "mistDrift 9s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-12 left-1/2 h-12 w-28 -translate-x-[130%] rounded-[999px]"
+        style={{
+          background: "rgba(124,58,237,0.2)",
+          filter: "blur(20px)",
+          animation: "mistDrift 11s ease-in-out infinite",
+        }}
+      />
 
-        <AuraEffect hovered={hovered} />
-        <CharacterLayers hovered={hovered} />
-      </svg>
+      <Image
+        src="/images/character.png"
+        alt="HxOpSec character"
+        fill
+        priority
+        sizes="(max-width: 768px) 280px, (max-width: 1024px) 360px, 460px"
+        className="object-contain drop-shadow-[0_0_45px_rgba(168,85,247,0.38)]"
+      />
     </div>
   );
 }
