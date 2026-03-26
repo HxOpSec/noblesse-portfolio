@@ -4,12 +4,16 @@ export interface Project {
   tags: string[];
   githubUrl: string;
   demoUrl: string;
+  status?: string;
 }
 
 export interface Skill {
   name: string;
-  level: number;
+  level?: number;
   icon: string;
+  label: string;
+  color: string;
+  badgeOnly?: boolean;
 }
 
 export interface SocialLink {

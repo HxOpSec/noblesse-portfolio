@@ -3,38 +3,45 @@
 import { motion } from "framer-motion";
 
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { aboutStats } from "@/lib/data";
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
-};
+import { aboutParagraphs, aboutStats, softSkills } from "@/lib/data";
 
 export function AboutSection() {
   return (
-    <section id="about" className="section-padding">
+    <motion.section
+      id="about"
+      className="section-padding"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+    >
       <div className="container-noble">
-        <SectionTitle
-          eyebrow="Biography"
-          title="About"
-          description="Noblesse-inspired frontend engineer focused on creating elegant products with animation polish, accessibility discipline, and performance-aware architecture."
-        />
+        <SectionTitle eyebrow="Identity" title="About" description="Honest progress. Clear direction. Strong discipline." />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, staggerChildren: 0.12 }}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {aboutStats.map((stat) => (
-            <motion.article key={stat.label} variants={fadeInUp} className="card-noble rounded-2xl p-6">
-              <p className="text-3xl font-semibold text-white">{stat.value}</p>
-              <p className="mt-2 text-sm text-violet-100/75">{stat.label}</p>
-            </motion.article>
-          ))}
-        </motion.div>
+        <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
+          <article className="card-noble rounded-2xl p-6 leading-8 text-violet-100/90">
+            <p>{aboutParagraphs[0]}</p>
+            <p className="mt-5">{aboutParagraphs[1]}</p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {softSkills.map((tag) => (
+                <span key={tag} className="rounded-full border border-violet-400/40 px-3 py-1 text-xs font-mono text-violet-200/95">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </article>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            {aboutStats.map((stat) => (
+              <article key={stat.label} className="card-noble rounded-2xl p-6">
+                <p className="text-3xl font-semibold text-white">{stat.value}</p>
+                <p className="mt-2 text-sm text-violet-100/80">{stat.label}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

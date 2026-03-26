@@ -1,10 +1,17 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { AtSign, GitFork, Link2, Send } from "lucide-react";
+import { motion } from "framer-motion";
+import { AtSign, GitFork, Send } from "lucide-react";
 
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { socialLinks } from "@/lib/data";
+
+const iconMap = {
+  GitHub: GitFork,
+  Telegram: Send,
+  Instagram: AtSign,
+};
 
 export function ContactSection() {
   const [notice, setNotice] = useState("");
@@ -15,13 +22,16 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="section-padding">
+    <motion.section
+      id="contact"
+      className="section-padding"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+    >
       <div className="container-noble">
-        <SectionTitle
-          eyebrow="Summon Me"
-          title="Contact"
-          description="Available for frontend projects, UI architecture, and premium web experience collaborations."
-        />
+        <SectionTitle eyebrow="Connect" title="Contact" description="Open to feedback, collaboration, and learning opportunities." />
 
         <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
           <form className="card-noble rounded-2xl p-6" onSubmit={handleSubmit} aria-label="Contact form">
@@ -39,13 +49,7 @@ export function ContactSection() {
               <label htmlFor="message" className="text-sm text-violet-100/85">
                 Message
               </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={4}
-                className="input-noble rounded-xl px-4 py-3"
-              />
+              <textarea id="message" name="message" required rows={4} className="input-noble rounded-xl px-4 py-3" />
 
               <button type="submit" className="btn-noble-solid mt-2 inline-flex w-fit items-center gap-2 px-6 py-3 text-sm font-semibold">
                 Send Message <Send size={16} />
@@ -63,32 +67,27 @@ export function ContactSection() {
             <h3 className="text-xl text-white">Social Links</h3>
             <div className="mt-4 space-y-3">
               {socialLinks.map((link) => {
-                const socialIconMap = {
-                  GitHub: GitFork,
-                  LinkedIn: Link2,
-                  Telegram: Send,
-                  X: AtSign,
-                } as const;
-                const Icon = socialIconMap[link.name as keyof typeof socialIconMap] ?? AtSign;
+                const Icon = iconMap[link.name as keyof typeof iconMap];
+                if (!Icon) return null;
 
                 return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={link.ariaLabel}
-                  className="flex items-center gap-2 text-violet-100/85 transition hover:text-violet-300"
-                >
-                  <Icon size={14} aria-hidden="true" />
-                  {link.name}
-                </a>
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={link.ariaLabel}
+                    className="flex items-center gap-2 rounded-lg border border-violet-500/20 px-3 py-2 text-violet-100/90 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-violet-300/40 hover:bg-violet-500/10"
+                  >
+                    <Icon size={15} />
+                    {link.name}
+                  </a>
                 );
               })}
             </div>
           </aside>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
