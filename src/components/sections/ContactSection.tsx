@@ -55,7 +55,7 @@ export function ContactSection() {
 
               <button
                 type="submit"
-                className="btn-noble-solid mt-2 inline-flex w-fit items-center gap-2 px-6 py-3 text-sm font-semibold transition-transform duration-500 ease-in-out hover:scale-[1.03] hover:animate-pulse"
+                className="btn-noble-solid btn-pulse mt-2 inline-flex w-fit items-center gap-2 px-6 py-3 text-sm font-semibold transition-transform duration-500 ease-in-out"
               >
                 {t("contact_send")} <Send size={16} />
               </button>

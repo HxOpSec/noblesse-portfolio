@@ -131,7 +131,7 @@ export function Navbar() {
           <div className="container-noble flex items-center gap-3 pb-4 text-xs uppercase tracking-[0.2em]">
             {(["en", "tj", "ru"] as const).map((value) => (
               <button
-                key={`mobile-${value}`}
+                key={value}
                 type="button"
                 onClick={() => setLang(value)}
                 className={cn(

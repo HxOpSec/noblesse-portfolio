@@ -58,7 +58,7 @@ export function HeroSection() {
             <span className="text-noble-gradient">{heroContent.name}</span>
             <span className="mt-2 block text-base font-sans uppercase tracking-[0.3em] text-violet-100/80 md:text-lg">{heroContent.realName}</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-sm uppercase tracking-[0.22em] text-violet-100/90 md:text-base">{t("hero_role").replace("&amp;", "&")}</p>
+          <p className="mt-5 max-w-2xl text-sm uppercase tracking-[0.22em] text-violet-100/90 md:text-base">{t("hero_role")}</p>
 
           <div className="mt-6 max-w-2xl font-mono text-base text-violet-200 md:text-lg">
             <TypeAnimation sequence={[t("hero_sub"), 1500, ...heroContent.typewriterLines.flatMap((line) => [line, 1500])]} speed={48} repeat={Infinity} />

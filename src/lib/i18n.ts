@@ -7,7 +7,7 @@ export const translations = {
     nav_skills: 'Skills',
     nav_projects: 'Projects',
     nav_contact: 'Contact',
-    hero_role: 'Cybersecurity Student &amp; Aspiring SOC Analyst',
+    hero_role: 'Cybersecurity Student & Aspiring SOC Analyst',
     hero_sub: 'Self-taught. Parrot OS. 3 months active.',
     about_title: 'About',
     about_subtitle: 'Learning to see what others miss, one system at a time.',

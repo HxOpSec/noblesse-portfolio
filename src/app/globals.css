@@ -234,3 +234,17 @@ h4 {
     opacity: 0;
   }
 }
+
+@keyframes btnPulseScale {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.btn-pulse:hover {
+  animation: btnPulseScale 1s ease-in-out infinite;
+}

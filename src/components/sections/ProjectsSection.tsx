@@ -10,15 +10,26 @@ const projectCards = [
     title: "PhantomScan",
     description:
       "A multi-threaded C++ network scanner focused on practical port discovery and system insight while keeping learning and safe experimentation at the center.",
-    tags: ["C++", "Linux", "Networking", "Multi-threading"],
+    tags: [
+      { id: "cxx", label: "C++" },
+      { id: "linux", label: "Linux" },
+      { id: "networking", label: "Networking" },
+      { id: "multithreading", label: "Multi-threading" },
+    ],
     status: "Live",
+    isClassified: false,
     showHoverQuote: true,
   },
   {
     title: "Next Operation",
     description: "The next operation is already in progress. Details are not yet declassified.",
-    tags: ["[REDACTED]", "[REDACTED]", "[REDACTED]"],
+    tags: [
+      { id: "redacted-1", label: "[REDACTED]" },
+      { id: "redacted-2", label: "[REDACTED]" },
+      { id: "redacted-3", label: "[REDACTED]" },
+    ],
     status: "[CLASSIFIED]",
+    isClassified: true,
     showHoverQuote: false,
   },
 ] as const;
@@ -54,7 +65,7 @@ export function ProjectsSection() {
                   {project.status ? (
                     <span
                       className={`rounded-full border px-3 py-1 text-xs font-mono ${
-                        project.title === "Next Operation"
+                        project.isClassified
                           ? "border-[#dc2626]/60 bg-[#dc2626]/10 text-[#dc2626]"
                           : "border-violet-300/40 bg-violet-500/10 text-violet-100/90"
                       }`}
@@ -65,12 +76,12 @@ export function ProjectsSection() {
                 </div>
                 <p className="leading-7 text-violet-100/86">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, index) => (
+                  {project.tags.map((tag) => (
                     <span
-                      key={`${project.title}-${tag}-${index}`}
-                      className={`rounded-full border border-violet-400/45 px-3 py-1 text-xs font-mono text-violet-200/90 ${project.title === "Next Operation" ? "blur-[4px]" : ""}`}
+                      key={`${project.title}-${tag.id}`}
+                      className={`rounded-full border border-violet-400/45 px-3 py-1 text-xs font-mono text-violet-200/90 ${project.isClassified ? "blur-[4px]" : ""}`}
                     >
-                      {tag}
+                      {tag.label}
                     </span>
                   ))}
                 </div>

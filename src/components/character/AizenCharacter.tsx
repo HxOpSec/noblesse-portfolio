@@ -20,7 +20,7 @@ export function AizenCharacter() {
         fill
         priority
         sizes="(max-width: 768px) 360px, 480px"
-        className="absolute inset-0 object-contain drop-shadow-[0_0_42px_rgba(124,58,237,0.6)] transition-all duration-[600ms] ease-in-out group-hover:opacity-0 group-hover:blur-[8px]"
+        className="absolute inset-0 z-10 object-contain drop-shadow-[0_0_42px_rgba(124,58,237,0.6)] transition-all duration-[600ms] ease-in-out group-hover:opacity-0 group-hover:blur-[8px]"
       />
 
       <Image
@@ -30,7 +30,7 @@ export function AizenCharacter() {
         priority
         aria-hidden
         sizes="(max-width: 768px) 360px, 480px"
-        className="absolute inset-0 translate-y-5 object-contain opacity-0 transition-all duration-[600ms] ease-in-out group-hover:translate-y-0 group-hover:opacity-100"
+        className="absolute inset-0 z-20 translate-y-5 object-contain opacity-0 transition-all duration-[600ms] ease-in-out group-hover:translate-y-0 group-hover:opacity-100"
       />
 
       <div
