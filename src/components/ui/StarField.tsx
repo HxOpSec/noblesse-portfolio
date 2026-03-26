@@ -13,6 +13,7 @@ interface StarNode {
   speed: number;
   color: [number, number, number];
   flare?: number;
+  flareLength?: number;
 }
 
 interface Nebula {
@@ -134,6 +135,7 @@ export function StarField() {
           phase: randomBetween(0, Math.PI * 2),
           speed: randomBetween(0.75, 1.4),
           color: pickStarColor(),
+          flareLength: randomBetween(8, 15),
         });
       }
 
@@ -280,7 +282,7 @@ export function StarField() {
         ctx.arc(x, y, star.radius, 0, Math.PI * 2);
         ctx.fill();
 
-        drawCrossFlare(x, y, randomBetween(8, 15), 0.22 * twinkle, star.color);
+        drawCrossFlare(x, y, star.flareLength ?? 10, 0.22 * twinkle, star.color);
       }
 
       for (const nebula of nebulae) {
