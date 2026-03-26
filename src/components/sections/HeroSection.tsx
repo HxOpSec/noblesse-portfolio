@@ -6,7 +6,7 @@ import { AtSign, Download, GitFork, Send } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { TypeAnimation } from "react-type-animation";
 
-import { RaizelCharacter } from "@/components/character/RaizelCharacter";
+import { AizenCharacter } from "@/components/character/AizenCharacter";
 import { heroContent, socialLinks } from "@/lib/data";
 
 const iconMap = {
@@ -94,7 +94,7 @@ export function HeroSection() {
         </div>
 
         <div ref={characterRef} className="opacity-0">
-          <RaizelCharacter />
+          <AizenCharacter />
         </div>
       </div>
     </section>
