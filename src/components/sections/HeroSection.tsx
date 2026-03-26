@@ -17,15 +17,30 @@ const iconMap = {
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const copyRef = useRef<HTMLDivElement>(null);
+  const characterRef = useRef<HTMLDivElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
+  const socialRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline();
 
-      timeline.fromTo(".hero-bg", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 0);
-      timeline.fromTo(".hero-character", { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.2);
-      timeline.fromTo(".hero-copy", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.75);
-      timeline.fromTo(".hero-actions", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1);
+      if (sectionRef.current) {
+        timeline.fromTo(sectionRef.current, { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 0);
+      }
+      if (characterRef.current) {
+        timeline.fromTo(characterRef.current, { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.2);
+      }
+      if (copyRef.current) {
+        timeline.fromTo(copyRef.current, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.75);
+      }
+      if (actionsRef.current) {
+        timeline.fromTo(actionsRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1);
+      }
+      if (socialRef.current) {
+        timeline.fromTo(socialRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.1);
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -35,7 +50,7 @@ export function HeroSection() {
     <section id="home" ref={sectionRef} className="hero-bg section-padding relative flex min-h-screen items-center overflow-hidden pt-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_60%_18%,rgba(124,58,237,0.26),transparent_40%),radial-gradient(circle_at_35%_85%,rgba(168,85,247,0.2),transparent_44%)]" />
       <div className="container-noble relative grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="hero-copy opacity-0">
+        <div ref={copyRef} className="opacity-0">
           <p className="font-mono text-xs uppercase tracking-[0.35em] text-violet-300">{heroContent.location}</p>
           <h1 className="mt-5 font-heading text-[clamp(2.8rem,7vw,5.4rem)] leading-[0.92] text-white">
             <span className="text-noble-gradient">{heroContent.name}</span>
@@ -47,7 +62,7 @@ export function HeroSection() {
             <TypeAnimation sequence={[...heroContent.typewriterLines.flatMap((line) => [line, 1500])]} speed={48} repeat={Infinity} />
           </div>
 
-          <div className="hero-actions mt-8 flex flex-wrap items-center gap-3 opacity-0">
+          <div ref={actionsRef} className="mt-8 flex flex-wrap items-center gap-3 opacity-0">
             <a href="#projects" className="btn-noble px-6 py-3 text-sm font-semibold">
               Explore Projects
             </a>
@@ -56,7 +71,7 @@ export function HeroSection() {
             </a>
           </div>
 
-          <div className="hero-actions mt-7 flex items-center gap-3 opacity-0">
+          <div ref={socialRef} className="mt-7 flex items-center gap-3 opacity-0">
             {socialLinks.map((link) => {
               const Icon = iconMap[link.name as keyof typeof iconMap];
               if (!Icon) return null;
@@ -78,7 +93,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="hero-character opacity-0">
+        <div ref={characterRef} className="opacity-0">
           <RaizelCharacter />
         </div>
       </div>

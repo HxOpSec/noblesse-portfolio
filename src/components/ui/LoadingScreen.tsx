@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const STORAGE_KEY = "hxopsec-loader-seen";
 const SESSION_KEY = "hxopsec-loader-session-seen";
 const DURATION = 1800;
 const BRAND = "HxOpSec";
@@ -20,7 +19,6 @@ export function LoadingScreen() {
       return;
     }
 
-    localStorage.setItem(STORAGE_KEY, "true");
     sessionStorage.setItem(SESSION_KEY, "true");
 
     const start = performance.now();
