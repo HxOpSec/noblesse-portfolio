@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { TypeAnimation } from "react-type-animation";
 
 import { AizenCharacter } from "@/components/character/AizenCharacter";
+import { useLanguage } from "@/context/LanguageContext";
 import { heroContent, socialLinks } from "@/lib/data";
 
 const iconMap = {
@@ -16,6 +17,7 @@ const iconMap = {
 };
 
 export function HeroSection() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
   const characterRef = useRef<HTMLDivElement>(null);
@@ -56,10 +58,10 @@ export function HeroSection() {
             <span className="text-noble-gradient">{heroContent.name}</span>
             <span className="mt-2 block text-base font-sans uppercase tracking-[0.3em] text-violet-100/80 md:text-lg">{heroContent.realName}</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-sm uppercase tracking-[0.22em] text-violet-100/90 md:text-base">{heroContent.role}</p>
+          <p className="mt-5 max-w-2xl text-sm uppercase tracking-[0.22em] text-violet-100/90 md:text-base">{t("hero_role")}</p>
 
           <div className="mt-6 max-w-2xl font-mono text-base text-violet-200 md:text-lg">
-            <TypeAnimation sequence={[...heroContent.typewriterLines.flatMap((line) => [line, 1500])]} speed={48} repeat={Infinity} />
+            <TypeAnimation sequence={[t("hero_sub"), 1500, ...heroContent.typewriterLines.flatMap((line) => [line, 1500])]} speed={48} repeat={Infinity} />
           </div>
 
           <div ref={actionsRef} className="mt-8 flex flex-wrap items-center gap-3 opacity-0">
@@ -84,7 +86,7 @@ export function HeroSection() {
                   rel="noreferrer"
                   aria-label={link.ariaLabel}
                   whileHover={{ y: -3, scale: 1.04 }}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-violet-400/35 bg-violet-500/10 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-violet-300/65 hover:bg-violet-500/25"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-violet-400/35 bg-violet-500/10 transition-all duration-500 ease-in-out hover:border-violet-300/65 hover:bg-violet-500/25"
                 >
                   <Icon size={17} />
                 </motion.a>

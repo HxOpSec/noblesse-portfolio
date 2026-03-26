@@ -3,7 +3,6 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Footer } from "@/components/ui/Footer";
 import { LoadingScreen } from "@/components/ui/LoadingScreen";
 import { Navbar } from "@/components/ui/Navbar";
@@ -20,7 +19,6 @@ export default function Home() {
       <ScrollProgress />
       <StarField />
       <NoiseOverlay />
-      <CustomCursor />
       <Navbar />
 
       <HeroSection />

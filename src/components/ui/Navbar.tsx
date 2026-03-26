@@ -4,9 +4,19 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { navLinks } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 
+const navKeyMap: Record<string, "nav_home" | "nav_about" | "nav_skills" | "nav_projects" | "nav_contact"> = {
+  "#home": "nav_home",
+  "#about": "nav_about",
+  "#skills": "nav_skills",
+  "#projects": "nav_projects",
+  "#contact": "nav_contact",
+};
+
 export function Navbar() {
+  const { lang, setLang, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [active, setActive] = useState("#home");
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -38,32 +48,51 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-[70] border-b transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
-        isScrolled ? "border-violet-400/30 bg-black/75 backdrop-blur-xl" : "border-transparent bg-transparent",
+        "fixed inset-x-0 top-0 z-[70] border-b transition-all duration-500 ease-in-out",
+        isScrolled ? "border-b-[rgba(168,85,247,0.3)] bg-black/75 backdrop-blur-[20px]" : "border-transparent bg-transparent",
       )}
     >
       <nav className="container-noble flex h-16 items-center justify-between" aria-label="Primary navigation">
-        <a href="#home" className="text-noble-gradient font-heading text-lg tracking-[0.16em]" data-cursor="magnetic-target">
+        <a href="#home" className="text-noble-gradient font-heading text-lg tracking-[0.16em]">
           HxOpSec
         </a>
 
-        <ul className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
+        <div className="hidden items-center gap-6 md:flex">
+          <ul className="flex items-center gap-6">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={cn(
+                    "rounded-full px-3 py-1 text-xs uppercase tracking-[0.22em] transition-all duration-500 ease-in-out",
+                    active === link.href
+                      ? "bg-violet-500/20 text-violet-100 shadow-[0_0_18px_rgba(168,85,247,0.3)]"
+                      : "text-violet-100/70 hover:text-violet-200",
+                  )}
+                >
+                  {t(navKeyMap[link.href])}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em]">
+            {(["en", "tj", "ru"] as const).map((value) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => setLang(value)}
                 className={cn(
-                  "rounded-full px-3 py-1 text-xs uppercase tracking-[0.22em] transition-all duration-300",
-                  active === link.href
-                    ? "bg-violet-500/20 text-violet-100 shadow-[0_0_18px_rgba(168,85,247,0.3)]"
-                    : "text-violet-100/70 hover:text-violet-200",
+                  "border-b px-1 py-0.5 font-medium transition-colors duration-200 ease-in-out",
+                  lang === value
+                    ? "border-[#a855f7] font-bold text-[#a855f7]"
+                    : "border-transparent text-[rgba(255,255,255,0.4)] hover:text-violet-200/85",
                 )}
               >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+                {value.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
 
         <button
           type="button"
@@ -78,27 +107,44 @@ export function Navbar() {
 
       <div
         className={cn(
-          "overflow-hidden transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden",
+          "overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out md:hidden",
           mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <div className="border-t border-violet-400/25 bg-black/90 backdrop-blur-xl">
+        <div className="border-t border-violet-400/25 bg-black/90 backdrop-blur-[20px]">
           <ul className="container-noble flex flex-col gap-3 py-4">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   className={cn(
-                    "block rounded-lg px-3 py-2 text-sm uppercase tracking-[0.18em] transition duration-300",
+                    "block rounded-lg px-3 py-2 text-sm uppercase tracking-[0.18em] transition duration-500 ease-in-out",
                     active === link.href ? "bg-violet-500/15 text-violet-200" : "text-violet-100/85",
                   )}
                   onClick={() => setMobileOpen(false)}
                 >
-                  {link.label}
+                  {t(navKeyMap[link.href])}
                 </a>
               </li>
             ))}
           </ul>
+          <div className="container-noble flex items-center gap-3 pb-4 text-xs uppercase tracking-[0.2em]">
+            {(["en", "tj", "ru"] as const).map((value) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => setLang(value)}
+                className={cn(
+                  "border-b px-1 py-0.5 font-medium transition-colors duration-200 ease-in-out",
+                  lang === value
+                    ? "border-[#a855f7] font-bold text-[#a855f7]"
+                    : "border-transparent text-[rgba(255,255,255,0.4)] hover:text-violet-200/85",
+                )}
+              >
+                {value.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </header>

@@ -21,10 +21,10 @@ export function ScrollProgress() {
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-[9998] h-[2px] bg-transparent" aria-hidden="true">
       <div
-        className="h-full origin-left transition-transform duration-100"
+        className="h-full origin-left transition-transform duration-500 ease-in-out"
         style={{
           transform: `scaleX(${progress})`,
-          background: "linear-gradient(90deg, #6b21a8, #a855f7, #c084fc)",
+          background: "linear-gradient(to right, #6b21a8, #a855f7)",
         }}
       />
     </div>

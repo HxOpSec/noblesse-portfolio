@@ -3,9 +3,40 @@
 import { motion } from "framer-motion";
 
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { projects } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
+
+const projectCards = [
+  {
+    title: "PhantomScan",
+    description:
+      "A multi-threaded C++ network scanner focused on practical port discovery and system insight while keeping learning and safe experimentation at the center.",
+    tags: [
+      { id: "cxx", label: "C++" },
+      { id: "linux", label: "Linux" },
+      { id: "networking", label: "Networking" },
+      { id: "multithreading", label: "Multi-threading" },
+    ],
+    status: "Live",
+    isClassified: false,
+    showHoverQuote: true,
+  },
+  {
+    title: "Next Operation",
+    description: "The next operation is already in progress. Details are not yet declassified.",
+    tags: [
+      { id: "redacted-1", label: "[REDACTED]" },
+      { id: "redacted-2", label: "[REDACTED]" },
+      { id: "redacted-3", label: "[REDACTED]" },
+    ],
+    status: "[CLASSIFIED]",
+    isClassified: true,
+    showHoverQuote: false,
+  },
+] as const;
 
 export function ProjectsSection() {
+  const { t } = useLanguage();
+
   return (
     <motion.section
       id="projects"
@@ -18,18 +49,27 @@ export function ProjectsSection() {
       <div className="container-noble">
         <SectionTitle
           eyebrow="Build Log"
-          title="Projects"
-          description="Project cards reveal the mindset behind each build — not just the stack."
+          title={t("projects_title")}
+          description={t("projects_subtitle")}
         />
 
         <div className="grid gap-5 md:grid-cols-2">
-          {projects.map((project) => (
-            <article key={project.title} className="project-card group relative min-h-[280px] overflow-hidden rounded-2xl border border-violet-500/35 bg-violet-950/25 p-6 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-violet-300/60">
-              <div className="space-y-4 transition-opacity duration-300 group-hover:opacity-20">
+          {projectCards.map((project) => (
+            <article
+              key={project.title}
+              className="project-card group relative min-h-[300px] overflow-hidden rounded-2xl border border-violet-500/35 bg-violet-950/25 p-6 transition-all duration-500 ease-in-out hover:border-violet-300/60"
+            >
+              <div className="space-y-4 transition-opacity duration-500 ease-in-out group-hover:opacity-20">
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="text-2xl text-white">{project.title}</h3>
                   {project.status ? (
-                    <span className="rounded-full border border-violet-300/40 bg-violet-500/10 px-3 py-1 text-xs font-mono text-violet-100/90">
+                    <span
+                      className={`rounded-full border px-3 py-1 text-xs font-mono ${
+                        project.isClassified
+                          ? "border-[#dc2626]/60 bg-[#dc2626]/10 text-[#dc2626]"
+                          : "border-violet-300/40 bg-violet-500/10 text-violet-100/90"
+                      }`}
+                    >
                       {project.status}
                     </span>
                   ) : null}
@@ -37,24 +77,21 @@ export function ProjectsSection() {
                 <p className="leading-7 text-violet-100/86">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <span key={`${project.title}-${tag}`} className="rounded-full border border-violet-400/45 px-3 py-1 text-xs font-mono text-violet-200/90">
-                      {tag}
+                    <span
+                      key={`${project.title}-${tag.id}`}
+                      className={`rounded-full border border-violet-400/45 px-3 py-1 text-xs font-mono text-violet-200/90 ${project.isClassified ? "blur-[4px]" : ""}`}
+                    >
+                      {tag.label}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="absolute inset-0 flex translate-y-full flex-col items-center justify-center gap-5 bg-gradient-to-t from-black/90 via-violet-950/92 to-violet-900/70 p-6 text-center transition-transform duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:translate-y-0">
-                <p className="font-heading text-xl italic leading-8 text-violet-100 drop-shadow-[0_0_14px_rgba(168,85,247,0.55)]">“{project.quote}”</p>
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-noble inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold"
-                >
-                  View Project
-                </a>
-              </div>
+              {project.showHoverQuote ? (
+                <div className="absolute inset-0 flex translate-y-full flex-col items-center justify-end gap-5 bg-[rgba(0,0,0,0.85)] p-6 text-center transition-transform duration-500 ease-in-out group-hover:translate-y-0">
+                  <p className="font-heading text-xl italic leading-8 text-violet-100 drop-shadow-[0_0_14px_rgba(168,85,247,0.55)]">“Every open port is a story. I just learned to listen.”</p>
+                </div>
+              ) : null}
             </article>
           ))}
         </div>

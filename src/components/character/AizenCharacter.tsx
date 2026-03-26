@@ -20,7 +20,7 @@ export function AizenCharacter() {
         fill
         priority
         sizes="(max-width: 768px) 360px, 480px"
-        className="object-contain drop-shadow-[0_0_42px_rgba(124,58,237,0.6)] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.01] group-hover:opacity-0 group-hover:blur-sm"
+        className="absolute inset-0 z-10 object-contain drop-shadow-[0_0_42px_rgba(124,58,237,0.6)] transition-all duration-[600ms] ease-in-out group-hover:opacity-0 group-hover:blur-[8px]"
       />
 
       <Image
@@ -30,11 +30,11 @@ export function AizenCharacter() {
         priority
         aria-hidden
         sizes="(max-width: 768px) 360px, 480px"
-        className="object-contain opacity-0 translate-y-5 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:translate-y-0 group-hover:opacity-100"
+        className="absolute inset-0 z-20 translate-y-5 object-contain opacity-0 transition-all duration-[600ms] ease-in-out group-hover:translate-y-0 group-hover:opacity-100"
       />
 
       <div
-        className="pointer-events-none absolute bottom-0 left-1/2 h-24 w-[90%] -translate-x-1/2 rounded-[999px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute bottom-0 left-1/2 h-24 w-[90%] -translate-x-1/2 rounded-[999px] opacity-0 transition-opacity duration-[600ms] ease-in-out group-hover:opacity-100"
         style={{
           background: "radial-gradient(ellipse, rgba(124,58,237,0.35) 0%, rgba(124,58,237,0.18) 45%, transparent 75%)",
           filter: "blur(20px)",
