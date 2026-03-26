@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Noblesse Portfolio",
-  description:
-    "Premium dark mystical portfolio with a cinematic galaxy-inspired hero experience.",
+  description: "Premium dark mystical portfolio with galaxy-inspired interactivity.",
 };
 
 export default function RootLayout({
@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body className="bg-background text-foreground antialiased">{children}</body>
     </html>
   );
 }
