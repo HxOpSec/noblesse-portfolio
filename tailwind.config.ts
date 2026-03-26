@@ -14,6 +14,10 @@ const config: Config = {
       maxWidth: {
         noble: "1280px",
       },
+      fontFamily: {
+        heading: ["var(--font-heading)", "serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
+      },
       keyframes: {
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
@@ -61,6 +65,7 @@ const config: Config = {
       },
     },
   },
+  plugins: [],
 };
 
 export default config;

@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Mail, Send } from "lucide-react";
+import { AtSign, GitFork, Link2, Send } from "lucide-react";
 
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { socialLinks } from "@/lib/data";
@@ -62,7 +62,16 @@ export function ContactSection() {
           <aside className="card-noble rounded-2xl p-6">
             <h3 className="text-xl text-white">Social Links</h3>
             <div className="mt-4 space-y-3">
-              {socialLinks.map((link) => (
+              {socialLinks.map((link) => {
+                const socialIconMap = {
+                  GitHub: GitFork,
+                  LinkedIn: Link2,
+                  Telegram: Send,
+                  X: AtSign,
+                } as const;
+                const Icon = socialIconMap[link.name as keyof typeof socialIconMap] ?? AtSign;
+
+                return (
                 <a
                   key={link.name}
                   href={link.href}
@@ -71,10 +80,11 @@ export function ContactSection() {
                   aria-label={link.ariaLabel}
                   className="flex items-center gap-2 text-violet-100/85 transition hover:text-violet-300"
                 >
-                  <Mail size={14} aria-hidden="true" />
+                  <Icon size={14} aria-hidden="true" />
                   {link.name}
                 </a>
-              ))}
+                );
+              })}
             </div>
           </aside>
         </div>

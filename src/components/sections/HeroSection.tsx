@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GitFork, Link2, Send } from "lucide-react";
+import { AtSign, GitFork, Link2, Send } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { TypeAnimation } from "react-type-animation";
 
@@ -31,6 +31,7 @@ const iconMap = {
   GitHub: GitFork,
   LinkedIn: Link2,
   Telegram: Send,
+  X: AtSign,
 };
 
 export function HeroSection() {
