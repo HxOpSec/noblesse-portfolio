@@ -25,8 +25,10 @@ export function AizenCharacter() {
 
       <Image
         src="/images/aizen-hogyoku.jpg"
-        alt="Sosuke Aizen with Hogyoku power"
+        alt=""
         fill
+        priority
+        aria-hidden
         sizes="(max-width: 768px) 360px, 480px"
         className="object-contain opacity-0 translate-y-5 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:translate-y-0 group-hover:opacity-100"
       />
